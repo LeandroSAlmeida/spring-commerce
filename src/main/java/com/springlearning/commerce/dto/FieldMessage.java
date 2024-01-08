@@ -4,12 +4,12 @@ public class FieldMessage {
     private String fielName;
     private String message;
 
-    public FieldMessage(String fielName, String message) {
-        this.fielName = fielName;
+    public FieldMessage(String fieldName, String message) {
+        this.fielName = fieldName;
         this.message = message;
     }
 
-    public String getFielName() {
+    public String getFieldName() {
         return fielName;
     }
 
