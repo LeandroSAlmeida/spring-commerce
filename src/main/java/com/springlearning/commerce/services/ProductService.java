@@ -2,6 +2,7 @@ package com.springlearning.commerce.services;
 
 import com.springlearning.commerce.domain.Product;
 import com.springlearning.commerce.dto.ProductDTO;
+import com.springlearning.commerce.dto.ProductMinDTO;
 import com.springlearning.commerce.repositories.ProductRepository;
 import com.springlearning.commerce.services.exceptions.DatabaseException;
 import com.springlearning.commerce.services.exceptions.ResourceNotFoundException;
@@ -29,9 +30,9 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(String name, Pageable pageable){
+    public Page<ProductMinDTO> findAll(String name, Pageable pageable){
        Page<Product> result = repository.searchByName(name, pageable);
-        return result.map(x -> new ProductDTO(x));
+        return result.map(x -> new ProductMinDTO(x));
     }
 
     @Transactional
