@@ -1,6 +1,8 @@
 package com.springlearning.commerce.services;
 
+import com.springlearning.commerce.domain.Category;
 import com.springlearning.commerce.domain.Product;
+import com.springlearning.commerce.dto.CategoryDTO;
 import com.springlearning.commerce.dto.ProductDTO;
 import com.springlearning.commerce.dto.ProductMinDTO;
 import com.springlearning.commerce.repositories.ProductRepository;
@@ -74,5 +76,12 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+
+        entity.getCategories().clear();
+        for (CategoryDTO catDto : dto.getCategories()){
+            Category cat = new Category();
+            cat.setId(catDto.getId());
+            entity.getCategories().add(cat);
+        }
     }
 }
