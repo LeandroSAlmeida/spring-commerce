@@ -3,6 +3,7 @@ package com.springlearning.commerce.controllers.handlers;
 import com.springlearning.commerce.dto.CustomError;
 import com.springlearning.commerce.dto.ValidationError;
 import com.springlearning.commerce.services.exceptions.DatabaseException;
+import com.springlearning.commerce.services.exceptions.ForbiddenException;
 import com.springlearning.commerce.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -39,4 +40,12 @@ public class ControllerExceptionHandler {
         }
         return ResponseEntity.status(status).body(err);
     }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<CustomError> forbidden(ForbiddenException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        CustomError err = new CustomError(Instant.now(),status.value(),e.getMessage(),request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
 }
