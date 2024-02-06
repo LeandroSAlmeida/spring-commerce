@@ -35,7 +35,7 @@ public class OrderItemDTO {
         return price;
     }
 
-    public Integer getQueantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
